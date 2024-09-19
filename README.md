@@ -1,19 +1,11 @@
-# A simple package to send mail notification to the user when the password is changed.
+# Password Changed Notification
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/brhn/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/brhn/password-changed-notification)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/brhn/password-changed-notification/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/brhn/password-changed-notification/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/brhn/password-changed-notification/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/brhn/password-changed-notification/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/brhn/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/brhn/password-changed-notification)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/asdh/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/brhn/password-changed-notification)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/asdh/password-changed-notification/run-tests?label=tests)](https://github.com/brhn/password-changed-notification/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/brhn/password-changed-notification/Check%20&%20fix%20styling?label=code%20style)](https://github.com/asdh/password-changed-notification/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/brhn/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/asdh/password-changed-notification)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/password-changed-notification.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/password-changed-notification)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+A simple package to send mail notification to the user when their password is changed.
 
 ## Installation
 
@@ -23,37 +15,66 @@ You can install the package via composer:
 composer require brhn/password-changed-notification
 ```
 
-You can publish and run the migrations with:
+## Usage
 
-```bash
-php artisan vendor:publish --tag="password-changed-notification-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="password-changed-notification-config"
-```
-
-This is the contents of the published config file:
+After installing the package, you can go to your `User` model or any other model that has password and email fields and use `PasswordChangedTrait` trait and implement `PasswordChangedNotificationContract` interface
 
 ```php
-return [
-];
+use Brhn\PasswordChangedNotification\Contracts\PasswordChangedNotificationContract;
+use Brhn\PasswordChangedNotification\Traits\PasswordChangedTrait;
+
+class User extends Authenticatable implements PasswordChangedNotificationContract
+{
+    use PasswordChangedTrait;
+}
 ```
 
-Optionally, you can publish the views using
+Now whenever you change the password of the user, a mail will be automatically sent to that user. Isn't that easy.
+
+By default the package will assume the columns name to be `email` and `password`. But if you have different column name for those fields then you can modify those as well.
+
+Let's say you have the `email` column as `user_email` in your `User` model or any other model, then you can add `emailColumnName` method on the `User` model and return `user_email` from here like so:
+
+```php
+public function emailColumnName(): string
+{
+    return 'user_email';
+}
+```
+
+You can also modify the `password` column by adding this method.
+
+```php
+public function passwordColumnName(): string
+{
+    return 'user_password';
+}
+```
+
+You can also modify the `name` column by adding this method. This will be used in the mail like Hi `Adam`.
+
+```php
+public function nameColumnName(): string
+{
+    return 'full_name';
+}
+```
+
+Further, if you want to modify the mail that is being sent to the user, you can publish the mail view using
 
 ```bash
 php artisan vendor:publish --tag="password-changed-notification-views"
 ```
 
-## Usage
+The views view will now be published in `resources/views/vendor/password-changed-notification/emails/password-changed-notification.blade.php`. You can modify this file as per your need and when mail is sent to the user, it will be used.
+
+You can also create your own mailable (the one that you create using `php artisan make:mail` command) and use that instead. For that you need to return the mailable that you have created by adding `passwordChangedNotificationMail` method on the `User` model and returning the mailable.
 
 ```php
-$passwordChangedNotification = new Brhn\PasswordChangedNotification();
-echo $passwordChangedNotification->echoPhrase('Hello, Brhn!');
+public function passwordChangedNotification(): Mailable
+{
+    return new YourOwnPasswordChangedNotificationMail($this);
+}
 ```
 
 ## Testing
@@ -62,22 +83,9 @@ echo $passwordChangedNotification->echoPhrase('Hello, Brhn!');
 composer test
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [Birhanu Kebito](https://github.com/brhan-kbt)
-- [All Contributors](../../contributors)
+-   [Brhn](https://github.com/brhan-kbt)
 
 ## License
 

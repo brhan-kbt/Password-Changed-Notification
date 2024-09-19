@@ -10,24 +10,25 @@ use Illuminate\Support\Facades\Mail;
 
 trait PasswordChangedTrait
 {
-
     public static function booted()
-/*************  ✨ Codeium Command ⭐  *************/
+    /*************  ✨ Codeium Command ⭐  *************/
     /**
      * Register the observer which will trigger the mail sending
      *
      * @return void
      */
-/******  cf374ef6-cf4c-461c-8a93-872d717e732a  *******/    {
+    /******  cf374ef6-cf4c-461c-8a93-872d717e732a  *******/
+    {
         static::observe(PasswordChangedObserver::class);
     }
 
-    public function passwordColumnName():string{
+    public function passwordColumnName(): string
+    {
         return 'password';
     }
 
-
-    public function emailColumnName():string{
+    public function emailColumnName(): string
+    {
         return 'email';
     }
 
@@ -40,12 +41,13 @@ trait PasswordChangedTrait
         return new PasswordChangedNotification($this);
 
     }
-    public function isPasswordChanged():bool
+
+    public function isPasswordChanged(): bool
     {
         return $this->wasChanged($this->passwordColumnName());
     }
 
-    public function sendNotificationWithQueue():bool
+    public function sendNotificationWithQueue(): bool
     {
         return false;
     }
@@ -56,15 +58,14 @@ trait PasswordChangedTrait
         }
         $mail = Mail::to($this->getRawOriginal($this->emailColumnName()));
 
-        
-        if($this->sendNotificationWithQueue()){
+        if ($this->sendNotificationWithQueue()) {
             Log::info('queue');
             $mail->queue($this->passwordChangedNotification());
+
             return;
-        }else {
+        } else {
             Log::info('direct');
             $mail->send($this->passwordChangedNotification());
         }
     }
 }
-
