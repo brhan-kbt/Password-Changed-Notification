@@ -5,17 +5,16 @@ use Illuminate\Support\Facades\Mail;
 
 it('can send mail to the user when password is changed', function () {
 
-        Mail::fake();
+    Mail::fake();
 
-        $user = User::factory()->create();
+    $user = User::factory()->create();
 
-        $user->password = bcrypt('password');
+    $user->password = bcrypt('password');
 
-        $user->save();
+    $user->save();
 
-        Mail::assertSent($user->passwordChangedNotification()::class);
+    Mail::assertSent($user->passwordChangedNotification()::class);
 });
-
 
 it('can not send mail to the user when password is not changed', function () {
 

@@ -4,8 +4,8 @@ namespace Brhn\PasswordChangedNotification\Database\Factories;
 
 use Brhn\PasswordChangedNotification\Tests\Model\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
@@ -14,8 +14,8 @@ class UserFactory extends Factory
      *
      * @return array
      */
+    protected $model = User::class;
 
-     protected $model = User::class;
     public function definition()
     {
         return [
@@ -39,4 +39,3 @@ class UserFactory extends Factory
         ]);
     }
 }
-

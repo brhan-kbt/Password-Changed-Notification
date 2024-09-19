@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-
 class User extends Authenticatable implements PasswordChangedNotificationContract
 {
-    use Notifiable, HasFactory, PasswordChangedTrait;
+    use HasFactory, Notifiable, PasswordChangedTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -40,6 +39,4 @@ class User extends Authenticatable implements PasswordChangedNotificationContrac
         'email_verified_at' => 'datetime',
         'is_phone_verified' => 'integer',
     ];
-
-
 }
