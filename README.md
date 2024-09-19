@@ -1,9 +1,9 @@
 # Password Changed Notification
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/asdh/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/asdh/password-changed-notification)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/asdh/password-changed-notification/run-tests?label=tests)](https://github.com/asdh/password-changed-notification/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/asdh/password-changed-notification/Check%20&%20fix%20styling?label=code%20style)](https://github.com/asdh/password-changed-notification/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/asdh/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/asdh/password-changed-notification)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/asdh/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/brhn/password-changed-notification)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/asdh/password-changed-notification/run-tests?label=tests)](https://github.com/brhn/password-changed-notification/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/brhn/password-changed-notification/Check%20&%20fix%20styling?label=code%20style)](https://github.com/asdh/password-changed-notification/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/brhn/password-changed-notification.svg?style=flat-square)](https://packagist.org/packages/asdh/password-changed-notification)
 
 A simple package to send mail notification to the user when their password is changed.
 
@@ -85,7 +85,7 @@ composer test
 
 ## Credits
 
--   [Laratips](https://github.com/brhan-kbt)
+-   [Brhn](https://github.com/brhan-kbt)
 
 ## License
 
