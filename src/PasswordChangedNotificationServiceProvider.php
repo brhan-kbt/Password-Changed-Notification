@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Brhn\PasswordChangedNotification;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Brhn\PasswordChangedNotification\Commands\PasswordChangedNotificationCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class PasswordChangedNotificationServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,7 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_migration_table_name_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->name('password-changed-notification')
+            ->hasViews();
     }
 }
