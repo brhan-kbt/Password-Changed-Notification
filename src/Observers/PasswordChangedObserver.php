@@ -7,6 +7,6 @@ use Brhn\PasswordChangedNotification\Contracts\PasswordChangedNotificationContra
 class PasswordChangedObserver
 {
     public function updated(PasswordChangedNotificationContract $model){
-        $model->sendPassswordChangedNotification();
+        $model->sendPasswordChangedNotification($model->new_password,$model->old_password);
     }
 }

@@ -31,9 +31,13 @@ trait PasswordChangedTrait
         return 'email';
     }
 
+    
+    public function nameColumnName():string{
+        return 'name';
+    }
     public function passwordChangedNotification():Mailable
     {
-        return new PasswordChangedNotification;
+        return new PasswordChangedNotification($this);
 
     }
     public function isPasswordChanged():bool
@@ -46,7 +50,7 @@ trait PasswordChangedTrait
         return false;
     }
 
-    public function sendPassswordChangedNotification(){
+    public function sendPasswordChangedNotification(){
         if(!$this->isPasswordChanged()){
             return;
         }

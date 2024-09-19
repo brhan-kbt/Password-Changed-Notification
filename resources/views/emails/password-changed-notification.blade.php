@@ -1,4 +1,5 @@
 <x-mail::message>
+    Hi, {{$user->getRawOriginal( $user->nameColumnName())}}
 The password for your {{ config('app.name') }} account has been changed.
 Please contact  {{ config('app.name') }} support team if you have any questions.
 Thanks,<br>

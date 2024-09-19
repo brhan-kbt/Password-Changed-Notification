@@ -10,5 +10,6 @@ interface PasswordChangedNotificationContract
     public function passwordChangedNotification();
     public function isPasswordChanged();
     public function sendNotificationWithQueue();
-    public function sendPassswordChangedNotification();
+    public function sendPasswordChangedNotification();
+    public function nameColumnName();
 }
