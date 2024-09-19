@@ -51,6 +51,15 @@ public function passwordColumnName(): string
 }
 ```
 
+You can also modify the `name` column by adding this method.
+
+```php
+public function nameColumnName(): string
+{
+    return 'user_name';
+}
+```
+
 You can also modify the `name` column by adding this method. This will be used in the mail like Hi `Adam`.
 
 ```php
