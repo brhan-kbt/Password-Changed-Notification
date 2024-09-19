@@ -4,7 +4,6 @@ namespace Brhn\PasswordChangedNotification;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Brhn\PasswordChangedNotification\Commands\PasswordChangedNotificationCommand;
 
 class PasswordChangedNotificationServiceProvider extends PackageServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace Brhn\PasswordChangedNotification\Tests;
 
+use Brhn\PasswordChangedNotification\PasswordChangedNotificationServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Brhn\PasswordChangedNotification\PasswordChangedNotificationServiceProvider;
 
 class TestCase extends Orchestra
 {
